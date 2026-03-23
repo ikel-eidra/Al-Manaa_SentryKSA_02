@@ -34,6 +34,7 @@ This phase replaces our simulated data with real-time, live intelligence gatheri
 
 Scaling the system for real-world demonstration.
 
+*   [ ] **Operator Authentication:** Integrate Firebase Auth for "Eyes Only" restricted login, ensuring only verified government operators can access the intelligence dashboard.
 *   [ ] **The 500+ Asset Vault:** Replace the 3 hardcoded locations with a full database (JSON or PostgreSQL) containing the accurate GPS coordinates, output values, and repair tiers for KSA's energy, water, government, and data infrastructures.
 *   [ ] **GPS Civilian Safety:** Implement geolocation tracking on the Flutter app to trigger local sirens/alerts if the user's phone is within 15km of an active target.
 *   [ ] **Dual-Language Support (i18n):** Implement full Arabic (RTL) and English localization for the War Room dashboard and advisory panels.
