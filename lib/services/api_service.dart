@@ -13,25 +13,26 @@ class ThreatIntelligenceSource {
 }
 
 class ApiService {
-  // Simulates fetching intelligence from multiple global sources
+  // Simulates the intelligence "Brain" scraping OSINT data from reliable news outlets,
+  // social media (X, Telegram, Instagram), and official government/military channels.
   Future<List<ThreatIntelligenceSource>> fetchThreatIntelligence() async {
     // Simulate network delay
     await Future.delayed(Duration(seconds: 2));
 
     return [
       ThreatIntelligenceSource(
-        source: 'US CENTCOM',
-        report: 'Elevated ballistic missile activity detected in western Iran.',
+        source: 'X / @CENTCOM',
+        report: 'Statement: Elevated ballistic missile activity detected in western Iran.',
         timestamp: DateTime.now().subtract(Duration(minutes: 15)),
       ),
       ThreatIntelligenceSource(
-        source: 'Israel IDF',
-        report: 'Increased drone swarm preparations observed near border regions.',
+        source: 'Telegram / IDF Official',
+        report: 'Video Statement: Increased drone swarm preparations observed near border regions.',
         timestamp: DateTime.now().subtract(Duration(minutes: 45)),
       ),
       ThreatIntelligenceSource(
-        source: 'Iran IRNA',
-        report: 'State media announces upcoming military exercises in the Persian Gulf.',
+        source: 'Instagram / IRNA_News',
+        report: 'Infographic: State media announces upcoming military exercises in the Persian Gulf.',
         timestamp: DateTime.now().subtract(Duration(hours: 2)),
       ),
     ];

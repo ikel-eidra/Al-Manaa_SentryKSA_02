@@ -24,7 +24,7 @@ SentryKSA leverages cutting-edge technology to achieve the following:
 *   **Frontend:** Flutter & Dart (Cross-platform, primarily targeted for Android deployment)
 *   **GIS & Mapping:** Google Maps SDK integration for interactive tactical maps
 *   **State Management:** Provider / ChangeNotifier for real-time threat tracking and countdown handling
-*   **Backend & Intelligence (Planned):** Python/FastAPI for advanced data scraping, threat correlation, and machine learning models
+*   **Backend & Intelligence (Planned):** Python/FastAPI serving as the system's "Brain". This component continuously scrapes and aggregates open-source intelligence (OSINT) from global news outlets, X (formerly Twitter), Telegram channels, Instagram, and official government/military communication channels used by all parties (e.g., US CENTCOM, Israel IDF, Iran IRNA) to issue statements. Natural Language Processing (NLP) models will correlate these statements to determine threat validity and trigger imminent impact calculations.
 
 ## Architecture & Logic Engine
 
