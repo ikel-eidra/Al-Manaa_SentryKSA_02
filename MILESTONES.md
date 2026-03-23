@@ -18,11 +18,11 @@ We have successfully built the foundation to prove the math and the user interfa
 ---
 
 ## Phase 2: Building the "Brain" (Backend MVP)
-**Status:** ⏳ NEXT UP
+**Status:** ⏳ IN PROGRESS
 
 This phase replaces our simulated data with real-time, live intelligence gathering.
 
-*   [ ] **Backend Initialization:** Stand up a Python / FastAPI microservice architecture.
+*   [x] **Backend Initialization:** Stand up a Python / FastAPI microservice architecture.
 *   [ ] **OSINT Scrapers:** Write Python scripts using `BeautifulSoup`, `Tweepy`, or `Telethon` to scrape X (Twitter) accounts (e.g., CENTCOM), Telegram channels, and global news RSS feeds.
 *   [ ] **Basic NLP Engine:** Implement a simple Natural Language Processing script (e.g., using HuggingFace or OpenAI API) to scan scraped text for keywords ("ballistic", "drone", "Riyadh", "Aramco") and determine "Threat Validity".
 *   [ ] **API Connection:** Refactor the Flutter `ApiService` to make live HTTP `GET` requests to our new Python backend instead of using mock delays.
