@@ -1,0 +1,1 @@
+Al-Man’aa (SentryKSA) is a Flutter-based strategic risk monitoring app for Saudi Arabia. It maps 500+ assets with a GIS heatmap, triangulates global threats via an OSINT-scraping intelligence engine (X, Telegram, news), models economic impacts (GDP/Brent shocks), and offers Day Zero recovery logic and GPS proximity alerts for maximum resilience.
