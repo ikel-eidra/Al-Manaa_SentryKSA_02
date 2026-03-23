@@ -36,6 +36,7 @@ Scaling the system for real-world demonstration.
 
 *   [ ] **The 500+ Asset Vault:** Replace the 3 hardcoded locations with a full database (JSON or PostgreSQL) containing the accurate GPS coordinates, output values, and repair tiers for KSA's energy, water, government, and data infrastructures.
 *   [ ] **GPS Civilian Safety:** Implement geolocation tracking on the Flutter app to trigger local sirens/alerts if the user's phone is within 15km of an active target.
+*   [ ] **Dual-Language Support (i18n):** Implement full Arabic (RTL) and English localization for the War Room dashboard and advisory panels.
 *   [ ] **Cloud Hosting:** Deploy the FastAPI backend to AWS, Google Cloud, or a local secure KSA server.
 *   [ ] **Security Hardening:** Ensure API routes are secured (JWT tokens), and API keys (like Google Maps) are moved into `.env` files for production safety.
 
