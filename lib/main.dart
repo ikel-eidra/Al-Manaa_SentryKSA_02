@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/threat_provider.dart';
-import 'SENTRY_KSA_GENESIS_CORE.dart';
+import 'ui/login_screen.dart';
 
 void main() {
   runApp(
@@ -31,7 +31,7 @@ class SentryKSAApp extends StatelessWidget {
           secondary: Colors.orange,
         ),
       ),
-      home: SentryKSADashboard(),
+      home: const OperatorLoginScreen(),
     );
   }
 }
