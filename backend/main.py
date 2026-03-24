@@ -3,6 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime, timedelta
 import random
 
+from scrapers.news_scraper import GlobalNewsScraper
+from scrapers.telegram_scraper import TelegramOSINTScraper
+
 app = FastAPI(
     title="SentryKSA Intelligence Brain",
     description="Backend microservice for OSINT scraping and threat intelligence correlation.",
@@ -25,33 +28,27 @@ def read_root():
 @app.get("/api/v1/intelligence/stream")
 def get_osint_stream():
     """
-    Returns the latest raw intelligence scraped from X, Telegram, and Official Channels.
-    (Currently returns simulated data pending actual scraper integration)
+    Aggregates intelligence from the active OSINT scrapers (News RSS & Telegram).
     """
-    now = datetime.utcnow()
-    return [
-        {
-            "id": "1",
-            "source": "X / @CENTCOM",
-            "report": "Statement: Elevated ballistic missile activity detected in western Iran.",
-            "timestamp": (now - timedelta(minutes=15)).isoformat(),
-            "confidence": 0.92
-        },
-        {
-            "id": "2",
-            "source": "Telegram / IDF Official",
-            "report": "Video Statement: Increased drone swarm preparations observed near border regions.",
-            "timestamp": (now - timedelta(minutes=45)).isoformat(),
-            "confidence": 0.88
-        },
-        {
-            "id": "3",
-            "source": "Instagram / IRNA_News",
-            "report": "Infographic: State media announces upcoming military exercises in the Persian Gulf.",
-            "timestamp": (now - timedelta(hours=2)).isoformat(),
-            "confidence": 0.99
-        }
-    ]
+    try:
+        # Initialize scrapers
+        news_scraper = GlobalNewsScraper()
+        telegram_scraper = TelegramOSINTScraper()
+
+        # Fetch data
+        news_data = news_scraper.fetch_latest_intel()
+        telegram_data = telegram_scraper.fetch_recent_messages()
+
+        # Combine, sort by timestamp (newest first), and return
+        combined_stream = news_data + telegram_data
+
+        # Sort descending by timestamp string
+        combined_stream.sort(key=lambda x: x['timestamp'], reverse=True)
+
+        return combined_stream
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to scrape OSINT sources: {str(e)}")
 
 @app.get("/api/v1/threats/active")
 def get_active_threats():
