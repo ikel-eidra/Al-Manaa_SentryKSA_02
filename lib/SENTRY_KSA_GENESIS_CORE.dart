@@ -8,7 +8,7 @@ import 'dart:async';
 
 // 1. STRATEGIC INVENTORY MODEL
 class StrategicAsset {
-  final String id, name, sector;
+  final String id, name, sector, province;
   final LatLng location;
   final int riskLevel; // 1: Low, 2: Med, 3: High
   final double outputValue; // Barrels per day or m3 water
@@ -21,7 +21,8 @@ class StrategicAsset {
     required this.location,
     required this.riskLevel,
     required this.outputValue,
-    required this.repairTier
+    required this.repairTier,
+    this.province = "Unknown",
   });
 }
 
@@ -55,9 +56,28 @@ class SentryKSADashboard extends StatefulWidget {
 
 class _SentryKSADashboardState extends State<SentryKSADashboard> {
   final List<StrategicAsset> vault = [
-    StrategicAsset(id: "ABQ-01", name: "Abqaiq Plant", sector: "Energy", location: LatLng(25.9371, 49.6631), riskLevel: 3, outputValue: 7000000, repairTier: 3),
-    StrategicAsset(id: "JUB-03", name: "Jubail Desal", sector: "Water", location: LatLng(26.9320, 49.6580), riskLevel: 3, outputValue: 1400000, repairTier: 3),
-    StrategicAsset(id: "RUH-MOD", name: "Riyadh MOD", sector: "Govt", location: LatLng(24.6644, 46.6890), riskLevel: 2, outputValue: 0, repairTier: 2),
+    // ─── ENERGY SECTOR ───────────────────────────────────────────────
+    StrategicAsset(id: 'E001', name: 'Abqaiq Processing Facility', sector: 'Energy', location: LatLng(25.9394, 49.6802), riskLevel: 3, outputValue: 7000000, repairTier: 3, province: 'Eastern Province'),
+    StrategicAsset(id: 'E002', name: 'Ras Tanura Refinery & Terminal', sector: 'Energy', location: LatLng(26.6441, 50.1610), riskLevel: 3, outputValue: 550000, repairTier: 3, province: 'Eastern Province'),
+    StrategicAsset(id: 'E003', name: 'Ghawar Oil Field', sector: 'Energy', location: LatLng(24.9000, 49.2500), riskLevel: 3, outputValue: 3800000, repairTier: 2, province: 'Eastern Province'),
+    StrategicAsset(id: 'E004', name: 'Khurais Oil Field', sector: 'Energy', location: LatLng(24.1640, 48.1880), riskLevel: 2, outputValue: 1500000, repairTier: 2, province: 'Eastern Province'),
+    StrategicAsset(id: 'E005', name: 'Shaybah Oil Field', sector: 'Energy', location: LatLng(22.5150, 54.0290), riskLevel: 2, outputValue: 1000000, repairTier: 2, province: 'Eastern Province'),
+    StrategicAsset(id: 'E006', name: 'Yanbu Refinery Complex', sector: 'Energy', location: LatLng(24.0231, 38.0612), riskLevel: 2, outputValue: 400000, repairTier: 2, province: 'Madinah Province'),
+    StrategicAsset(id: 'E007', name: 'Jubail Industrial City', sector: 'Energy', location: LatLng(27.0046, 49.6220), riskLevel: 3, outputValue: 350000, repairTier: 3, province: 'Eastern Province'),
+
+    // ─── WATER SECTOR ────────────────────────────────────────────────
+    StrategicAsset(id: 'W001', name: 'Ras Al-Khair Desalination', sector: 'Water', location: LatLng(27.4800, 49.2200), riskLevel: 3, outputValue: 1025000, repairTier: 3, province: 'Eastern Province'),
+    StrategicAsset(id: 'W002', name: 'Shoaiba Desalination Plant', sector: 'Water', location: LatLng(20.6900, 39.5100), riskLevel: 2, outputValue: 880000, repairTier: 2, province: 'Makkah Province'),
+    StrategicAsset(id: 'W003', name: 'Jubail Desalination Plant', sector: 'Water', location: LatLng(26.9700, 49.5700), riskLevel: 2, outputValue: 800000, repairTier: 2, province: 'Eastern Province'),
+
+    // ─── GOVERNMENT SECTOR ───────────────────────────────────────────
+    StrategicAsset(id: 'G001', name: 'Ministry of Defense (Riyadh)', sector: 'Govt', location: LatLng(24.6502, 46.7100), riskLevel: 3, outputValue: 0, repairTier: 2, province: 'Riyadh Province'),
+    StrategicAsset(id: 'G002', name: 'King Abdulaziz Air Base', sector: 'Govt', location: LatLng(26.2653, 50.1522), riskLevel: 3, outputValue: 0, repairTier: 3, province: 'Eastern Province'),
+    StrategicAsset(id: 'G003', name: 'Prince Sultan Air Base', sector: 'Govt', location: LatLng(24.0627, 47.5805), riskLevel: 2, outputValue: 0, repairTier: 2, province: 'Riyadh Province'),
+
+    // ─── DATA SECTOR ─────────────────────────────────────────────────
+    StrategicAsset(id: 'D001', name: 'NEOM Tech Hub Data Center', sector: 'Data', location: LatLng(26.5500, 36.0700), riskLevel: 1, outputValue: 0, repairTier: 1, province: 'Tabuk Province'),
+    StrategicAsset(id: 'D004', name: 'NIC National Information Center', sector: 'Data', location: LatLng(24.6883, 46.7225), riskLevel: 3, outputValue: 0, repairTier: 2, province: 'Riyadh Province'),
   ];
 
   String tMinus = "02:44:12"; // Calculated from Scraper
