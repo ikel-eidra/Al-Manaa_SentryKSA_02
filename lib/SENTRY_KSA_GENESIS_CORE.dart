@@ -2,6 +2,7 @@
 // Foundation for production-grade Strategic Risk & Recovery App
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
 
@@ -60,6 +61,18 @@ class _SentryKSADashboardState extends State<SentryKSADashboard> {
   ];
 
   String tMinus = "02:44:12"; // Calculated from Scraper
+  String? _mapStyle;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadMapStyle();
+  }
+
+  void _loadMapStyle() async {
+    _mapStyle = await rootBundle.loadString('assets/map_style.json');
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +82,13 @@ class _SentryKSADashboardState extends State<SentryKSADashboard> {
         children: [
           // GIS HEATMAP
           GoogleMap(
+            onMapCreated: (GoogleMapController controller) {
+              if (_mapStyle != null) {
+                controller.setMapStyle(_mapStyle);
+              }
+            },
             initialCameraPosition: CameraPosition(target: LatLng(24.7, 46.6), zoom: 5.5),
-            mapType: MapType.hybrid,
+            mapType: MapType.normal,
             circles: vault.map((asset) => Circle(
               circleId: CircleId(asset.id),
               center: asset.location,
